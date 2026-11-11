@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="page-type" content="software" />
+    <meta name="site-kind" content="software" />
+    <meta name="description" content="A student-to-student marketplace for used course books." />
+    <title>Urbook — Student book exchange</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="flow.css" />
+  </head>
+  <body>
+    <div class="toast" id="toast" role="status"></div>
+    <header class="topbar" id="topbar">
+      <button class="brand flow-brand" data-flow="welcome" aria-label="Urbook home">urbook<span>.</span></button>
+      <nav class="entry-nav" aria-label="Welcome navigation">
+        <button data-flow="login">Log in</button>
+        <button data-flow="signup">Sign up</button>
+      </nav>
+      <nav class="member-nav" aria-label="Marketplace navigation">
+        <button data-flow="browse">Browse books</button>
+        <button data-flow="sell">Sell a book</button>
+        <button data-flow="account"><span class="avatar">A</span><span>My account</span></button>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero" id="explore">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">The student book exchange</p>
+          <h1>Find the next<br /><em>chapter.</em></h1>
+          <p class="hero-description">Browse used course books from students at your college. Make an account when you’re ready to contact a seller or list a book.</p>
+          <div class="entry-actions"><button class="primary-button" data-flow="browse">Explore books <span>→</span></button><button class="outline-button" data-flow="signup">Create an account</button></div>
+          <p class="login-prompt">Already using Urbook? <button data-flow="login">Log in</button></p>
+        </div>
+        <div class="hero-art reveal delay-1" aria-hidden="true">
+          <div class="paper paper-back"></div><div class="paper paper-middle"></div>
+          <div class="book-cover"><p>THE<br />SECOND<br /><i>LIFE</i><br />OF BOOKS</p><small>URBOOK PRESS</small></div>
+          <div class="hero-note"><strong>1,200+</strong><span>books waiting<br />for their next reader</span></div>
+        </div>
+      </section>
+
+      <section class="section recently" id="browse">
+        <div class="section-heading"><div><p class="eyebrow">Fresh on the shelf</p><h2>Recently listed</h2></div><button class="text-link" data-view="browse">See all books <span>→</span></button></div>
+        <div class="book-grid" id="recent-grid"></div>
+      </section>
+
+      <section class="how-it-works">
+        <p class="eyebrow">A simpler exchange</p><div class="steps"><article><span>01</span><h3>Find your book</h3><p>Search by subject, author, college or semester.</p></article><article><span>02</span><h3>Talk directly</h3><p>Connect with the student who owns it. No middleman.</p></article><article><span>03</span><h3>Pass it on</h3><p>Meet up, make the exchange, and keep the story moving.</p></article></div>
+      </section>
+
+      <section class="section browse-view hidden" id="browse-view">
+        <div class="view-heading"><p class="eyebrow">Available now</p><h2>Books from your campus</h2><p>Search by title or author, then narrow the shelf to your course.</p></div>
+        <div class="browse-actions"><div class="search-shell"><label class="sr-only" for="search">Search books</label><span class="search-icon">⌕</span><input id="search" type="search" placeholder="Search title or author" autocomplete="off" /><button id="search-button">Search</button></div><button class="primary-button list-button" data-flow="sell">+ List a book</button></div>
+        <div class="catalog-layout"><aside class="filters"><div class="filter-title"><strong>Filters</strong><button id="clear-filters">Clear all</button></div><label>College<select id="college-filter"><option value="">All colleges</option><option>Delhi University</option><option>IIT Delhi</option><option>St. Stephen's College</option></select></label><label>Course<select id="course-filter"><option value="">All courses</option><option>Engineering</option><option>Economics</option><option>Medicine</option><option>Literature</option></select></label><label>Semester<select id="semester-filter"><option value="">Any semester</option><option>1st semester</option><option>2nd semester</option><option>3rd semester</option><option>4th semester</option></select></label></aside><div><div class="catalog-meta"><span id="result-count">0 books</span><select id="sort"><option value="recent">Recently listed</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div><div class="book-grid catalog-grid" id="catalog-grid"></div></div></div>
+      </section>
+
+      <section class="sell-view hidden" id="sell">
+        <div class="form-intro"><p class="eyebrow">Make room, make someone’s semester</p><h2>Sell a book</h2><p>List it in a minute. You’ll deal directly with interested students.</p></div>
+        <form id="sell-form" class="sell-form"><label>Book title<input required name="title" placeholder="e.g. Principles of Economics" /></label><label>Author<input required name="author" placeholder="Author name" /></label><div class="form-row"><label>Price (₹)<input required name="price" type="number" min="1" placeholder="350" /></label><label>Condition<select name="condition"><option>Like new</option><option>Good</option><option>Well read</option></select></label></div><div class="form-row"><label>College<select name="college"><option>Delhi University</option><option>IIT Delhi</option><option>St. Stephen's College</option></select></label><label>Course / semester<input name="course" placeholder="e.g. Economics · 3rd sem" /></label></div><label>About this book<textarea name="about" rows="3" placeholder="Highlight notes, edition, or anything a buyer should know."></textarea></label><button class="primary-button" type="submit">Publish listing <span>→</span></button></form>
+      </section>
+
+      <section class="detail-view hidden" id="detail-view"></section>
+      <section class="account-view hidden" id="account"><div class="account-header"><div class="profile-mark">A</div><div><p class="eyebrow">My account</p><h2>Hey, Aanya.</h2><p>aanya.sharma@college.edu</p></div><button class="outline-button">Edit profile</button></div><div class="listing-head"><h3>Your listings</h3><button class="primary-button small" data-view="sell">+ Sell a book</button></div><div class="book-grid" id="my-listings"></div></section>
+      <section class="auth-view hidden" id="signup"><div class="auth-card"><button class="back-button" data-flow="welcome">← Back</button><p class="eyebrow">Create your account</p><h2>Join your book exchange</h2><p>Save listings, contact sellers, and pass your own books on.</p><form id="signup-form"><label>Name<input required name="name" placeholder="Your name" /></label><label>College<select required name="college"><option value="">Choose your college</option><option>Delhi University</option><option>IIT Delhi</option><option>St. Stephen's College</option></select></label><label>Email<input required name="email" type="email" placeholder="you@college.edu" /></label><label>Password<input required name="password" type="password" minlength="8" placeholder="At least 8 characters" /></label><button class="primary-button" type="submit">Create account <span>→</span></button></form><p class="switch-auth">Already have an account? <button data-flow="login">Log in</button></p></div></section>
+      <section class="auth-view hidden" id="login"><div class="auth-card"><button class="back-button" data-flow="welcome">← Back</button><p class="eyebrow">Welcome back</p><h2>Log in to Urbook</h2><p>Access your saved listings and messages.</p><form id="login-form"><label>Email<input required name="email" type="email" placeholder="you@college.edu" /></label><label>Password<input required name="password" type="password" placeholder="Your password" /></label><button class="primary-button" type="submit">Log in <span>→</span></button></form><p class="switch-auth">New here? <button data-flow="signup">Create an account</button></p></div></section>
+    </main>
+    <footer><a class="brand" href="#home">urbook<span>.</span></a><p>Made for the books that have more to give.</p><span>© 2026</span></footer>
+    <script src="app.js"></script>
+    <script src="flow.js"></script>
+  </body>
+</html>
